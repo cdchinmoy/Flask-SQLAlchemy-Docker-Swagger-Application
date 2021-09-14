@@ -6,7 +6,7 @@ Flask application to manage the patient appointment
 
 ## STEP 1 
 
-Install requirements.txt file
+Install requirements.txt file <br>
 Command: pip install -r requirements.txt
 
 ## STEP 2
