@@ -6,16 +6,22 @@ Flask application to manage the patient appointment
 
 ## STEP 1 
 
-Setup database configuration inside project filename: __init__.py
+Install requirements.txt file
+Command: pip install -r requirements.txt
 
 ## STEP 2
+
+Setup database configuration inside project filename: __init__.py <br>
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://dbuser:dbpassword@localhost/dbname"
+
+## STEP 3
 
 Database migration command: <br>
     1. python manage.py db init <br>
     2. python manage.py db migrate <br>
     3. python manage.py db upgrade
 
-## STEP 3
+## STEP 4
 
 Run: python run.py
 
