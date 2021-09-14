@@ -1,6 +1,6 @@
 # APPOINTMENT BOOKING SYSTEM
 
-Flask application to manage the patient appointment
+Flask Assignment
 
 ----------------------------------------------------
 
@@ -11,8 +11,8 @@ Setup database configuration inside project filename: __init__.py
 ## STEP 2
 
 Database migration command: 
-    1. python manage.py db init \n
-    2. python manage.py db migrate \n
+    1. python manage.py db init <br>
+    2. python manage.py db migrate <br>
     3. python manage.py db upgrade
 
 ## STEP 3
