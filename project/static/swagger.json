@@ -1,0 +1,396 @@
+swagger: '2.0'
+info:
+  description: This is an API developed to test some CRUD operation based on multi user register and login, authenticated with JWT.
+  version: 1.0.0
+  title: CRUD Flask API
+  # put the contact info for your development or API team
+  contact:
+    email: cdchinmoy@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: Admin Endpoint
+  description: User authentication and manage doctor and patientment.
+
+- name: Doctor Endpoint
+  description: Doctor authentication and manage medicine.
+
+- name: Patient Endpoint
+  description: Patient authentication and manage appointment.
+
+paths:
+  /user_api/register:
+    post:
+      tags:
+      - Admin Endpoint
+      summary: adds an user object
+      operationId: addUser
+      description: Registers a user to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: registration
+        description: User to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Registration'
+      responses:
+        201:
+          description: an error occured, a json object is returned with an "error" field with an error message
+        200:
+          description: user created and a json object returned with created user
+
+  /user_api/login:
+    post:
+      tags:
+      - Admin Endpoint
+      summary: log user into the system
+      operationId: userLogin
+      description: Allows a legitimate user access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: login
+        description: User to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+  /user_api/create_doctor:
+    post:
+      tags:
+      - Admin Endpoint
+      summary: adds an doctor object
+      operationId: createDoctor
+      description: add a doctor into the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      - in: body
+        name: registration
+        description: User to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Registration'
+      responses:
+        201:
+          description: an error occured, a json object is returned with an "error" field with an error message
+        200:
+          description: user created and a json object returned with created user
+  
+  /user_api/all_doctor:
+    get:
+      tags:
+      - Admin Endpoint
+      summary: list all doctor
+      operationId: listDoctor
+      description: return and display doctor list
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      responses:
+        201:
+          description: an error occured, a json object is returned with an "error" field with an error message
+        200:
+          description: user created and a json object returned with created user          
+
+
+  /user_api/edit_doctor/{doctorId}:
+    put:
+      tags:
+      - Admin Endpoint
+      summary: deleting a doctor from the system
+      operationId: editDoctor
+      description: Allows a legitimate doctor access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      - in: path
+        name: doctorId
+        required: true
+        type: integer
+        minimum: 1
+      - in: body
+        name: registration
+        description: User to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Registration'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+
+  /user_api/delete_doctor/{doctorId}:
+    delete:
+      tags:
+      - Admin Endpoint
+      summary: deleting a doctor from the system
+      operationId: deleteDoctor
+      description: delete doctor from the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      - in: path
+        name: doctorId
+        required: true
+        type: integer
+        minimum: 1
+        description: enter doctor id.  
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+
+
+
+  /doctor_api/login:
+    post:
+      tags:
+      - Doctor Endpoint
+      summary: log doctor into the system
+      operationId: doctorLogin
+      description: Allows a legitimate doctor access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: login
+        description: Doctor to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+  /doctor_api/add_medicine:
+    post:
+      tags:
+      - Doctor Endpoint
+      summary: log doctor into the system
+      operationId: Medicine
+      description: Allows a legitimate doctor access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      - in: body
+        name: medicine
+        description: Doctor to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Medicine'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+  /patient_api/register:
+    post:
+      tags:
+      - Patient Endpoint
+      summary: adds an patient object
+      operationId: addPatient
+      description: Registers a patient to the system
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: registration
+        description: Patient to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Registration'
+      responses:
+        201:
+          description: an error occured, a json object is returned with an "error" field with an error message
+        200:
+          description: user created and a json object returned with created user
+
+
+
+  /patient_api/login:
+    post:
+      tags:
+      - Patient Endpoint
+      summary: log patient into the system
+      operationId: patientLogin
+      description: Allows a legitimate patient access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: login
+        description: patient to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/Login'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+
+  /patient_api/make_appointment:
+    post:
+      tags:
+      - Patient Endpoint
+      summary: log patient into the system
+      operationId: makeAppointment
+      description: Allows a legitimate patient access privileged info
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: token to verify user authentication
+      - in: body
+        name: login
+        description: patient to be logged in
+        required: true
+        schema:
+          $ref: '#/definitions/MakeAppointment'
+      responses:
+        200:
+          description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
+
+
+
+
+definitions:
+  Registration:
+    type: object
+    required:
+    - name
+    - username
+    - email
+    - password
+    properties:
+      name:
+        type: string
+        example: vince112
+      username:
+        type: string
+        example: vince112
+      email:
+        type: string
+        example: vince112@test.com
+      password:
+        type: string
+        example: my-really-really-strong-passsword
+
+  Login:
+    type: object
+    required:
+    - username
+    - password
+    properties:
+      username:
+        type: string
+        example: vince112
+      password:
+        type: string
+        example: my-really-really-strong-passsword
+        
+  
+  Medicine:
+    type: object
+    required:
+    - title
+    - dose
+    properties:
+      title:
+        type: string
+        example: Paracetamol
+      price:
+        type: number
+        example: 3
+
+  MakeAppointment:
+    type: object
+    required:
+    - doctor_id
+    - appointment_date
+    - appointment_time
+    properties:
+      doctor_id:
+        type: number
+        example: 1
+      appointment_date:
+        type: string
+        example: 13-10-2021
+      appointment_time:
+        type: string
+        example: 2:00PM
+
+# Added by API Auto Mocking Plugin
+host: localhost:5000
+schemes:
+ - http
