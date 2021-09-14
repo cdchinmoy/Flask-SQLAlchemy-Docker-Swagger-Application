@@ -11,8 +11,8 @@ Setup database configuration inside project filename: __init__.py
 ## STEP 2
 
 Database migration command: 
-    1. python manage.py db init
-    2. python manage.py db migrate
+    1. python manage.py db init \n
+    2. python manage.py db migrate \n
     3. python manage.py db upgrade
 
 ## STEP 3
