@@ -142,3 +142,9 @@ class Prescription(db.Model):
     dose = db.Column(db.Integer, nullable=False)
     created_at = db.Column(DateTime(), default=datetime.now)
     updated_at = db.Column(DateTime(), default=datetime.now, onupdate=datetime.now)
+
+    def __init__(self, appointment_id, doctor_id, medication_id, dose):
+        self.appointment_id = appointment_id
+        self.doctor_id = doctor_id
+        self.medication_id = medication_id
+        self.dose = dose

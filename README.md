@@ -21,8 +21,13 @@ Run: python run.py
 
 ----------------------------------------------------
 
-## Swagger URL:
+## Swagger Endpoint URL:
 localhost:5000/swagger
+
+1. Register a user
+2. Login with the credentials 
+3. After a successful request token get generated and returned.
+4. To access and submit data need to enter token for user authentication.
 
 
 
