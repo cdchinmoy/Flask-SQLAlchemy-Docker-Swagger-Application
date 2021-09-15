@@ -9,7 +9,7 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'thisissecret'
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:12345678@localhost/doctor_appointment"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:root@localhost/doctor_appointment"
     
     db.init_app(app)
     migrate.init_app(app, db)

@@ -1,5 +1,7 @@
 # Flask Assignment
 
+Testing URL : http://ec2-13-127-218-103.ap-south-1.compute.amazonaws.com:5000/swagger
+
 Flask application to manage the patient appointment
 
 ----------------------------------------------------
