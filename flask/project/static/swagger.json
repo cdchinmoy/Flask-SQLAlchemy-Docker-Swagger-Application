@@ -321,9 +321,6 @@ paths:
         200:
           description: With json object that has "success" and "token" attributes signify a successful login request. With json object that has "error" attribute signifies a failed login request
 
-
-
-
 definitions:
   Registration:
     type: object
@@ -391,6 +388,6 @@ definitions:
         example: 2:00PM
 
 # Added by API Auto Mocking Plugin
-host: localhost:5000
+host: localhost
 schemes:
  - http

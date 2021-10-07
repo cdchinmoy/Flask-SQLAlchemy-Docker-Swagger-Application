@@ -1,13 +1,11 @@
 version: '3.8'
 services:
-    backend:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports: 
-            - 8001:5000
-        volumes: 
-            - .:/app
+    flask:
+        build: ./flask
+        container_name: flask
+        restart: always
+        expose:
+          - 8080
         depends_on: 
             - db
     
@@ -21,3 +19,10 @@ services:
             MYSQL_ROOT_PASSWORD: root
         ports:
             - 33067:3306
+
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        restart: always
+        ports:
+            - "80:80"        
